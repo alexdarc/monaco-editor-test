@@ -9,14 +9,10 @@ const editor = monaco.editor.create(
         language: 'html',
     });
 
-
-editor.onMouseUp((evt) => {
-    if (evt.target.type === monaco.editor.MouseTargetType.CONTENT_TEXT
-        || evt.target.type === monaco.editor.MouseTargetType.CONTENT_EMPTY) {
-        const position = editor.getPosition();
-        document.getElementById('currentPositionLine').value = position.lineNumber;
-        document.getElementById('currentPositionColumn').value = position.column;
-    }
+editor.onDidChangeCursorPosition((evt) => {
+    const position = evt.position;
+    document.getElementById('currentPositionLine').value = position.lineNumber;
+    document.getElementById('currentPositionColumn').value = position.column;
 })
 
 const editorPositionForm = document.getElementById('editorPositionForm');
