@@ -2,7 +2,7 @@ const path = require('path');
 const { defineConfig } = require('vite');
 
 module.exports = defineConfig({
-    // base: '/monaco-editor-test/',
+    base: '/monaco-editor-test/',
     build: {
         outDir: 'dist',
         rollupOptions: {
