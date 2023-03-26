@@ -1,4 +1,4 @@
-import './style.scss'
+import './style.scss';
 import * as monaco from 'monaco-editor';
 import { documentSource } from './document-source';
 import * as parse5 from 'parse5';
@@ -14,7 +14,7 @@ editor.onDidChangeCursorPosition((evt) => {
     const position = evt.position;
     document.getElementById('currentPositionLine').value = position.lineNumber;
     document.getElementById('currentPositionColumn').value = position.column;
-})
+});
 
 const editorPositionForm = document.getElementById('editorPositionForm');
 editorPositionForm.addEventListener('submit', (evt) => {
@@ -28,6 +28,7 @@ editorPositionForm.addEventListener('submit', (evt) => {
 });
 
 const ast = parse5.parse(documentSource, { sourceCodeLocationInfo: true });
+
 function isPositionInsideElement(startLine, startCol, endLine, endCol, targetLine, targetCol) {
     if (targetLine < startLine || targetLine > endLine) {
         // Если строка находится за пределами диапазона, то позиция не находится внутри элемента
@@ -59,6 +60,7 @@ function isPositionInsideElement(startLine, startCol, endLine, endCol, targetLin
     // то позиция находится внутри элемента, независимо от колонки
     return true;
 }
+
 // function getElementByLineAndColumn(lineNumber, columnNumber) {
 //     // Проходимся по AST, ищем элемент с заданными координатами
 //     function findElement(node) {
@@ -214,7 +216,7 @@ function selectElement(line, column) {
     // post message to preview iframe
     preview.contentWindow.postMessage({
         type: 'SELECTOR',
-        payload: selector
+        payload: selector,
     }, '*');
 }
 
@@ -224,4 +226,4 @@ editor.onMouseUp((evt) => {
         const position = editor.getPosition();
         selectElement(position.lineNumber, position.column);
     }
-})
+});

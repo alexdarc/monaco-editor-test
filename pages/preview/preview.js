@@ -1,5 +1,5 @@
 import './preview.css';
-import { documentSource } from "./document-source";
+import { documentSource } from '../../document-source.js';
 
 document.querySelector('#main').outerHTML = documentSource;
 
@@ -12,7 +12,10 @@ window.addEventListener('message', (event) => {
             console.log('Selector received:', message.payload);
             const element = document.querySelector(message.payload);
             selectElement(element);
-            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            element.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+            });
             break;
     }
 });
